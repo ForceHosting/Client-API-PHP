@@ -6,54 +6,29 @@ use GuzzleHttp\Client;
 
 class API {
 
-   /**
-     * The GuzzleHttp client.
-     *
-     * @var Client
-     */
-    protected $guzzle;
-
     /**
-     * Number of seconds a request is retried.
+     * Create a new Pterodactyl instance.
      *
-     * @var int
+     * @param string             $apiKey
+     * @param \GuzzleHttp\Client $guzzle
+     *
+     * @return void
      */
-    public $timeout = 30;
+    public function __construct($apiKey, Client $guzzle = null)
+    {
+        $this->http = new Http($this, $guzzle);
+    }
 
-    public function __construct(Client $guzzle = null)
-    {
-        $this->guzzle = $guzzle ?: new Client([
-            'base_uri'    => 'https://api.fallback.forcehost.net/',
-            'http_errors' => false,
-        ]);
-        return $this;
-    }
-    /**
-     * Make request and return the response.
-     *
-     * @param string $method
-     * @param string $uri
-     * @param array  $query
-     * @param array  $payload
-     *
-     * @return mixed
-     */
-    public function request($uri)
-    {
-        $response = $this->guzzle->request('GET', "https://api.fallback.forcehost.net/".$uri);
-        $responseBody = (string) $response->getBody();
-        return $responseBody;
-    }
     public function GetUserRam ($userid) {
-        return $this->request("userram.php?id=$userid");
+        return $this->http->request("userram.php?id=$userid");
     }
     public function GetUserCpu ($userid) {
-        return $this->request("usercpu.php?id=$userid");
+        return $this->http->request("usercpu.php?id=$userid");
     }
     public function GetUserDisk ($userid) {
-        return $this->request("userdisk.php?id=$userid");
+        return $this->http->request("userdisk.php?id=$userid");
     }
     public function GetUserSlots ($userid) {
-        return $this->request("userslots.php?id=$userid");
+        return $this->http->request("userslots.php?id=$userid");
     }
 }
