@@ -3,6 +3,7 @@
     "description": "Force Hosting API for PHP",
     "keywords": ["force", "hosting", "forcehosting"],
     "license": "MIT",
+    "version": "1.0.1",
     "authors": [
         {
             "name": "The MG",
