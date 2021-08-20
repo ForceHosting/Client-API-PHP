@@ -1,6 +1,8 @@
 <?php
 namespace Force\API;
 
+use GuzzleHttp\Client;
+
 class API {
 	$client = new GuzzleHttp\Client(['base_uri' => 'https://api.fallback.forcehost.net/']);
 
