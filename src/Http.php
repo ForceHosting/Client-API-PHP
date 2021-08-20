@@ -1,4 +1,10 @@
-<?php   
+<?php 
+namespace Force\API;
+
+use GuzzleHttp\Client;
+//use Force\API\Http;
+
+class Http {  
    /**
      * The GuzzleHttp client.
      *
@@ -38,3 +44,4 @@
         $responseBody = (string) $response->getBody();
         return $responseBody;
     }
+  }
